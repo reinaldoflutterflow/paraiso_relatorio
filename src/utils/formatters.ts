@@ -25,16 +25,9 @@ export const parseMoneyValue = (value: string | number | undefined): number => {
       return correctedValue;
     }
     
-    // Verificar se o valor está em centavos (valores como 7600 para R$ 76,00)
-    // Se o valor for inteiro e maior que 100, provavelmente está em centavos
-    if (value >= 100 && Number.isInteger(value)) {
-      const correctedValue = value / 100;
-      console.log('Valor possivelmente em centavos, dividindo por 100:', correctedValue);
-      return correctedValue;
-    }
-    
-    // Caso contrário, retornar o valor como está
-    console.log('Retornando valor numérico sem alterações:', value);
+    // Não converter valores inteiros para centavos
+    // Valores inteiros como 288 devem permanecer como 288,00 e não 2,88
+    console.log('Retornando valor inteiro sem conversão para centavos:', value);
     return value;
   }
   
@@ -59,15 +52,9 @@ export const parseMoneyValue = (value: string | number | undefined): number => {
       return 0;
     }
     
-    // Verificar se o valor está em centavos (valores como "7600" para R$ 76,00)
-    // Se o valor for inteiro e maior que 100, provavelmente está em centavos
-    if (numericValue >= 100 && Number.isInteger(numericValue)) {
-      const correctedValue = numericValue / 100;
-      console.log('Valor string possivelmente em centavos, dividindo por 100:', correctedValue);
-      return correctedValue;
-    }
-    
-    console.log('Valor final após processamento da string:', numericValue);
+    // Não converter valores inteiros para centavos
+    // Valores inteiros como "288" devem permanecer como 288,00 e não 2,88
+    console.log('Valor string sem conversão para centavos:', numericValue);
     return numericValue;
   } catch (error) {
     console.error('Erro ao processar valor:', error);
